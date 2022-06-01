@@ -1,9 +1,10 @@
 import { Nav, NavDropdown, Container, Navbar } from 'react-bootstrap';
+import CartWidget from './CartWidget';
 
 
 function NavBar() {
     return (
-      <Navbar bg="danger" variant="dark" expand="lg">
+      <Navbar className="miNavbar" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="#">
           <img
@@ -28,6 +29,7 @@ function NavBar() {
               <Nav.Link href="#">Contacto</Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          <CartWidget contador={'1'} />
         </Container>
       </Navbar>
     );
