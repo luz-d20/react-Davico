@@ -2,7 +2,6 @@ import React from 'react';
 import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import Badge from 'react-bootstrap/Badge';
-import { Button} from 'react-bootstrap';
 
 
 

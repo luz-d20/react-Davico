@@ -1,13 +1,45 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*BOTONES*/
+.botonPrincipal {
+    background-color: #D4BBDD;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Montserrat", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 16px;
+    text-align: center;
 }
+    
+.botonPrincipal:hover {
+    background-color: #d4bbddd2;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  /*FUENTES*/
+.primary {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /*ALERTS*/
+  .swal-overlay {
+    background-color: rgba(0, 0, 0, 0.418);
+  }
+  .swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: #5E376D;
+    font-size: 12px;
+    border: 1px solid #5E376D85;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+  .swal-button:hover,
+  .swal-button:not([disabled]):hover {
+    background-color: #5E376D85;
+  }

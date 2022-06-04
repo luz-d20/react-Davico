@@ -1,10 +1,11 @@
 import { Nav, NavDropdown, Container, Navbar } from 'react-bootstrap';
 import CartWidget from './CartWidget';
+import './NavBar.css';
 
 
 function NavBar() {
     return (
-      <Navbar className="miNavbar" variant="dark" expand="lg">
+      <Navbar className="miNavbar primary" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="#">
           <img
