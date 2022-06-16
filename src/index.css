@@ -14,6 +14,11 @@
     line-height: 20px;
     padding: 10px 16px;
     text-align: center;
+    text-decoration: none;
+}
+.lse, .lse:hover, .lse:visited, .lse:active {
+  text-decoration: none;
+  color: #FFFFFF;
 }
     
 .botonPrincipal:hover {
@@ -43,3 +48,18 @@
   .swal-button:not([disabled]):hover {
     background-color: #5E376D85;
   }
+
+
+.footer {
+  background-color: #5E376D;
+  font-weight: 600;
+  color: white;
+  padding: 20px 0px 5px 0px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.footer a {
+  color: white;
+}

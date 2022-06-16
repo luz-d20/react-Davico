@@ -36,3 +36,7 @@
     outline: none;
     background-color: #d4bbddd2;
 }
+
+.categoria {
+  font-size: 12px; font-weight: 600;
+}

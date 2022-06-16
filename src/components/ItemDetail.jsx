@@ -12,17 +12,16 @@ const agregar = (count) => {
     }
 }
 
-export default function ItemDetail ( { categoria, title, description, thumbnail, precio } ) {
+export default function ItemDetail ( { category_id, title, thumbnail, price } ) {
   return (
     <div className="item-detail-contenedor">
             <div className="item-detail-featured-img">
-                <img className="item-detail-img grow" src={thumbnail} alt={description}/>
+                <img className="item-detail-img grow" src={thumbnail} alt={title}/>
             </div>
         <div className="item-detail-info">
             <h2>{title}</h2>
-            <h6>{categoria}</h6>
-            <p>{description}</p>
-            <h4>{precio}</h4>
+            <h6>{category_id}</h6>
+            <h4>$ {price}</h4>
             <ItemCount initial={1} stock={10} onAdd={agregar} />
         </div>
     </div>
