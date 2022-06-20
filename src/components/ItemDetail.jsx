@@ -1,18 +1,42 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './ItemDetail.css';
 import ItemCount from '../components/ItemCount';
 import swal from 'sweetalert';
+import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+
+export default function ItemDetail ( { category_id, title, thumbnail, price } ) {
+  const { addToCart } = useContext(CartContext);
+  const { isInCart } = useContext(CartContext);
+
+  const [cant, setCant] = useState(0);
 
 
-const agregar = (count) => {
+  //FUNCIONES DE ITEM COUNT
+  const [count, setCount] = useState(1)
+  const stock = 10;
+
+  const sumar = () => {
+    count < stock ? setCount(count + 1) : swal('No hay suficiente stock')
+  }
+  const restar = () => {
+    count > 1 ? setCount(count - 1) : swal('La cantidad no puede ser menor que 1')
+  }
+  const reset = () => {
+    setCount(1)
+  }
+
+  const agregar = (count) => {
     if (count === 1) {
       swal("Se agregó 1 producto");
     } else {	
     swal(`Se agregaron ${count} productos.`);
     }
-}
+    setCant(count);
+  }
 
-export default function ItemDetail ( { category_id, title, thumbnail, price } ) {
+//FIN FUNCIONES DE ITEM COUNT
+
   return (
     <div className="item-detail-contenedor">
             <div className="item-detail-featured-img">
@@ -22,7 +46,13 @@ export default function ItemDetail ( { category_id, title, thumbnail, price } ) 
             <h2>{title}</h2>
             <h6>{category_id}</h6>
             <h4>$ {price}</h4>
-            <ItemCount initial={1} stock={10} onAdd={agregar} />
+            <div>
+              {cant > 1 ? 
+                <Link to={'/cart'}><button className="botonPrincipal">Terminar mi compra</button></Link>
+                 : 
+                <ItemCount stock={10} initial={1} onAdd={agregar} sumar={sumar} restar={restar} reset={reset} count={count} />
+                }
+            </div>
         </div>
     </div>
    )

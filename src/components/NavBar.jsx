@@ -28,7 +28,7 @@ function NavBar() {
               <Nav.Link href="/contact">Contacto</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <CartWidget contador={'1'} />
+          <CartWidget/>
         </Container>
       </Navbar>
     );

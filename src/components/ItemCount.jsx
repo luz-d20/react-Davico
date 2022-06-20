@@ -1,20 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './ItemCount.css';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 
-export default function ItemCount({ stock, initial, onAdd }) {
-    const [count, setCount] = useState(initial)
-    
-    const sumar = () => {
-        count < stock ? setCount(count + 1) : swal('No hay suficiente stock')
-    }
-    const restar = () => {
-        count > initial ? setCount(count - 1) : swal('La cantidad no puede ser menor que 1')
-    }
-    const reset = () => {
-        setCount(initial)
-    }
+export default function ItemCount({ onAdd, sumar, restar, reset, stock, count }) {
+    const {cart, addToCart} = useContext(CartContext);
 
     return (
         <div className="cajita">
@@ -29,3 +21,4 @@ export default function ItemCount({ stock, initial, onAdd }) {
         </div>
     )
 }
+
