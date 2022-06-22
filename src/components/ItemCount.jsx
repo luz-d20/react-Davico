@@ -4,7 +4,6 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 
-
 export default function ItemCount({ onAdd, sumar, restar, reset, stock, count }) {
     const {cart, addToCart} = useContext(CartContext);
 

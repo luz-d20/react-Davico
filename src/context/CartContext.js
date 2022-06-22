@@ -1,52 +1,54 @@
 import { createContext, useState } from "react";
 
 export const CartContext = createContext()
-
 const {Provider} = CartContext;
-
 const MyProvider = ({children}) => {
     
-    const [cart, setCart] = useState();
+    const [cart, setCart] = useState([]);
 
-    //Método Some - Item Detail - se encarga de determinar si el producto a agregar ya está en el carrito o no - retorna booleano
+    //Is in cart determina si el producto a agregar ya está en el carrito o no
     const isInCart = (id) => {
-        return cart.some(item => item.id === id);
+        return cart.some((detail) => detail.id === id);
     }
 
-    //Método Add - Item Detail - se encarga de agregar un producto al carrito
-    const addToCart = (item, qty) => {
-        const newCart = [...cart, {...item, qty}];
-        if (isInCart(newCart.id)) {
-            const findProduct = newCart.find(item => item.id === newCart.id);
+    //AddToCart agrega un producto al carrito, o aumenta la cantidad si ya está en el carrito
+    const addToCart = (detail, count) => {
+        const newItem = {
+            ...detail,
+            count,
+        };
+        if (isInCart(newItem.id)) {
+            const findProduct = cart.find(item => item.id === newItem.id);
             const productIndex = cart.indexOf(findProduct);
             const auxArray = [...cart];
-            auxArray[productIndex].qty += qty;
+            auxArray[productIndex].count += count;
             setCart(auxArray);
         }
         else {
-            setCart([...cart], newCart)
+            setCart([...cart, newItem]);
         }
+        console.log(cart)
     }
 
-    //Vaciar el carrito - Cart - Botón
+    //EmptyCart vacia el carrito
     const emptyCart = () => {
         setCart([]);
     }
 
-    //Método filter - Cart - se encarga en función del ID de retornar un nuevo array sin el producto seleccionado
+    //RemoveFromCart elimina un producto cuyo ID coincida con el que se le pasa por parámetro.
     const removeFromCart = (id) => {
         const newCart = cart.filter(item => item.id !== id);
         setCart(newCart);
     }
 
-    //Método Reduce - CartWidget - Retorna la cantidad total de unidades que tiene nuestro state cart
-    const getItemQuantity = (item) => {
-        return cart.reduce((acc, x) => acc += x.qty , 0)
+    //GetItemQuantity retorna la cantidad total de unidades que tiene nuestro state cart
+    const getItemQuantity = () => {
+        return cart.reduce((acc, x) => acc += x.count , 0)
     }
     
-    //Método Reduce - Cart - Retorna e precio total del carrito
+    //GetCartTotal retorna el precio total de todos los productos que tiene el carrito
     const getCartTotal = () => {
-        return cart.reduce((acc, x) => acc += x.price * x.qty , 0)
+        return cart.reduce((acc, x) => (acc += x.price * x.count) , 0)
     }
 
     

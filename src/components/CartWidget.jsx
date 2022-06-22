@@ -14,7 +14,7 @@ export default function CartWidget() {
     <IconContext.Provider value={{ color: "rgba(255, 255, 255, .55)", size: "2em", className:"iconos"}}>
       <div>
         <Link to="/cart"><FaShoppingCart />
-          <Badge bg="light" text="secondary" pill>{getItemQuantity}</Badge>
+          <Badge bg="light" text="secondary" pill>{getItemQuantity()}</Badge>
         </Link>
       </div>
     </IconContext.Provider>

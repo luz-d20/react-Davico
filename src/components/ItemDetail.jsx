@@ -5,10 +5,13 @@ import swal from 'sweetalert';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
-export default function ItemDetail ( { category_id, title, thumbnail, price } ) {
-  const { addToCart } = useContext(CartContext);
-  const { isInCart } = useContext(CartContext);
+export default function ItemDetail ( { detail } ) {
+  let { category_id, title, price, id } = detail;
+  let thumbnail = detail.pictures[0].url;
 
+  const { isInCart, addToCart } = useContext(CartContext);
+
+  
   const [cant, setCant] = useState(0);
 
 
@@ -28,11 +31,13 @@ export default function ItemDetail ( { category_id, title, thumbnail, price } ) 
 
   const agregar = (count) => {
     if (count === 1) {
-      swal("Se agregó 1 producto");
+      swal(`Se agregó ${title} al carrito`);
     } else {	
-    swal(`Se agregaron ${count} productos.`);
+    swal(`Se agregaron ${count} ${title} al carrito.`);
     }
     setCant(count);
+    addToCart(detail, count);
+    isInCart(id);
   }
 
 //FIN FUNCIONES DE ITEM COUNT

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ItemDetailContainer.css';
 import ItemDetail from '../components/ItemDetail';
 import { useParams } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 
 export default function ItemDetailContainer() {
@@ -29,13 +30,14 @@ export default function ItemDetailContainer() {
 //Fin del fetch a cambiar
 
 if (cargando) {
-  return <div>Cargando...</div>;
+  return <div className="loader">  <Spinner animation="border" variant="danger" />
+  </div>;
 }
 
 
 return (
     <div className="itemCard">
-      <ItemDetail category_id={producto.category_id} title={producto.title} description={producto.condition} thumbnail={producto.pictures[0].url} price={producto.price} />
+      <ItemDetail detail={producto} />
     </div>
   )
 }
