@@ -9,6 +9,17 @@ import Contact from './Routes/Contact';
 import Footer from './components/Footer';
 import MyProvider from './context/CartContext';
 import Cart from './components/Cart';
+import { initializeApp } from "firebase/app";
+
+initializeApp({
+  apiKey: "AIzaSyARqyjefhTlACUQM2KARBft_goUk0QBs9Q",
+  authDomain: "react-davico.firebaseapp.com",
+  projectId: "react-davico",
+  storageBucket: "react-davico.appspot.com",
+  messagingSenderId: "1069044923785",
+  appId: "1:1069044923785:web:e8e27bb791a7a9cd6c7558",
+  measurementId: "G-1L3MDGK65J"
+});
 
 
 function App() {

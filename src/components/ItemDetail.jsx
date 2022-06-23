@@ -52,8 +52,11 @@ export default function ItemDetail ( { detail } ) {
             <h6>{category_id}</h6>
             <h4>$ {price}</h4>
             <div>
-              {cant > 1 ? 
+              {cant > 0 ? 
+              <>
+                <Link to={'/'}><button className="botonPrincipal">Seguir comprando</button></Link>
                 <Link to={'/cart'}><button className="botonPrincipal">Terminar mi compra</button></Link>
+                </>
                  : 
                 <ItemCount stock={10} initial={1} onAdd={agregar} sumar={sumar} restar={restar} reset={reset} count={count} />
                 }

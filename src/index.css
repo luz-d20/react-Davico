@@ -15,8 +15,9 @@
     padding: 10px 16px;
     text-align: center;
     text-decoration: none;
-    margin: 5px 0;
+    margin: 5px;
   }
+
 .lse, .lse:hover, .lse:visited, .lse:active {
   text-decoration: none;
   color: #FFFFFF;
