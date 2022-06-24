@@ -5,6 +5,7 @@ import './ItemListContainer.css';
 import { Spinner } from 'react-bootstrap';
 
 
+
 export default function ItemListContainer() {
   const { id } = useParams();
   const [productos, setProductos] = useState([]);
@@ -13,7 +14,7 @@ export default function ItemListContainer() {
 
   const api = 'https://api.mercadolibre.com/sites/MLA/search?q=ropa-de-monta%C3%B1a';
 
-const task = new Promise ((resolve, reject) => {
+  const task = new Promise ((resolve, reject) => {
   setTimeout(() => {
       fetch(`${api}&limit=20`)
         .then(res => res.json())

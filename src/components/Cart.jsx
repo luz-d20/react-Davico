@@ -56,9 +56,15 @@ export default function Cart() {
     </table>
     
     <div className="cart-footer">
+      {carritoVacio?
+          <Link to="/"><button className="botonPrincipal">Volver al inicio</button></Link>
+          :
+          <>
           <h3>Total: ${getCartTotal()}</h3>
           <Link to="/cart"><button className="botonPrincipal">Continuar al Pago</button></Link>
           <button className="botonPrincipal" onClick={emptyCart}>Vaciar Carrito</button>
+          </>
+      }
     </div>
     </div>      
           </>
