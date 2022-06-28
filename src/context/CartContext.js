@@ -12,12 +12,13 @@ const MyProvider = ({children}) => {
     }
 
     //AddToCart agrega un producto al carrito, o aumenta la cantidad si ya está en el carrito
-    const addToCart = (detail, count) => {
+    const addToCart = (detail, count, id) => {
         const newItem = {
             ...detail,
             count,
+            id,
         };
-        if (isInCart(newItem)) {
+        if (isInCart(newItem.id)) {
             const findProduct = cart.find(item => item.id === newItem.id);            
             const productIndex = cart.indexOf(findProduct);
             const auxArray = [...cart];
@@ -27,7 +28,6 @@ const MyProvider = ({children}) => {
         else {
             setCart([...cart, newItem]);
         }
-        console.log(cart)
     }
 
     //EmptyCart vacia el carrito

@@ -14,12 +14,12 @@ export default function Cart() {
     <table>
       <thead>
         <tr>
-          <th>Imágen</th>
+          <th className="header-image">Imágen</th>
           <th>Producto</th>
           <th>Precio</th>
-          <th>Cantidad</th>
+          <th>Cant</th>
           <th>Total</th>
-          <th>Eliminar</th>
+          <th>X</th>
         </tr>
       </thead>
       <tbody>

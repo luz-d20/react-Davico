@@ -19,6 +19,7 @@ export default function ItemDetailContainer() {
     getDoc(productRef).then((snapshot) => {
       setProducto(snapshot.data());
       setCargando(false);
+      
     })
     .catch(error => {
       setError(error);
@@ -36,7 +37,7 @@ if (cargando) {
 
 return (
     <div className="itemCard">
-      <ItemDetail detail={producto} />
+      <ItemDetail detail={producto} id={id} />
     </div>
   )
 }

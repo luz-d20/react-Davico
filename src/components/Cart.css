@@ -1,3 +1,9 @@
+@media screen and (max-width: 768px) {
+  .cart-item-img, .header-image {
+    display: none;
+  }    
+}
+
 .empty-cart {
     padding: 20px;
 }
@@ -18,7 +24,9 @@
 table, th, td {
     border: 1px solid #ccc;
 }
-
+thead {
+    text-align: center;
+}
 .cart {
     display: flex;
     flex-direction: column;

@@ -5,8 +5,8 @@ import swal from 'sweetalert';
 import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
-export default function ItemDetail ( { detail } ) {
-  let { category_id, title, price, id, picture, stock } = detail;
+export default function ItemDetail ( { detail, id } ) {
+  let { category_id, title, price, picture, stock } = detail;
   
   const { isInCart, addToCart } = useContext(CartContext);
   const [cant, setCant] = useState(0);
@@ -32,7 +32,7 @@ export default function ItemDetail ( { detail } ) {
     swal(`Se agregaron ${count} ${title} al carrito.`);
     }
     setCant(count);
-    addToCart(detail, count);
+    addToCart(detail, count, id);
     isInCart(id);
   }
 
@@ -41,7 +41,7 @@ export default function ItemDetail ( { detail } ) {
   return (
     <div className="item-detail-contenedor">
             <div className="item-detail-featured-img">
-                <img className="item-detail-img grow" src={picture} alt={title}/>
+                <img className="item-detail-img" src={picture} alt={title}/>
             </div>
         <div className="item-detail-info">
             <h2>{title}</h2>

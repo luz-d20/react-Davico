@@ -9,13 +9,15 @@ export default function Checkout() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    const [sentOrder, setSentOrder] = useState(false)
+    const [orderId, setOrderId] = useState('')
 
     const db = getFirestore();
     const orderCollection = collection (db, 'pedidos');
-    const sentOrder = false;
+    
 
 
-    const { cart, getCartTotal } = useContext(CartContext);
+    const { cart, getCartTotal, emptyCart } = useContext(CartContext);
     
     
     function handleClick() {
@@ -26,14 +28,14 @@ export default function Checkout() {
         }
         console.log(order)
         addDoc(orderCollection, order).then(({id}) => {
-                console.log(id)
-            }
+            setOrderId(id)
+            setSentOrder(true)
+        }
             )
             .catch(error => {
                 console.log(error)
             }
         )
-        sentOrder = true;
     }
 
     if (cart.length === 0) {
@@ -46,25 +48,25 @@ export default function Checkout() {
     }
 
     return (
+        <>
         <div className="checkoutBody">
-            {sentOrder ?
-            <>
+            <h1>¡Gracias por tu pedido!</h1>
+            <h2>Completá con tu información</h2>
+            <p>Llená tu información en el formulario para completar la compra. Nos pondremos en contacto para gestionar el pago y el envío!</p>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tu nombre..." />
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu email..." />
+            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Tu teléfono..." />
+            <button onClick={handleClick} className="botonPrincipal">Enviar</button>
+        </div>
+        {sentOrder&&
+            <div className="sentOrder">
                 <h1>¡Gracias por tu pedido!</h1>
-                <h2>¡Tu pedido ha sido enviado!</h2>
+                <h2>Tu número de pedido es:</h2>
+                <p className="orderId">{orderId}</p>
                 <p>Nos pondremos en contacto para gestionar el pago y el envío!</p>
-                <Link to="/"><button className="botonPrincipal">Volver al inicio</button></Link>
-            </>
-    :
-    <>
-        <h1>¡Gracias por tu pedido!</h1>
-        <h2>Completá con tu información</h2>
-        <p>Llená tu información en el formulario para completar la compra. Nos pondremos en contacto para gestionar el pago y el envío!</p>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tu nombre..." />
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu email..." />
-        <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Tu teléfono..." />
-        <button onClick={handleClick} className="botonPrincipal">Comprar</button>
+                <Link to="/"><button className="botonPrincipal" onClick={emptyCart}>Volver al inicio</button></Link>
+            </div>
+        }
         </>
-    }
-    </div>
-  )
+    )
 }
