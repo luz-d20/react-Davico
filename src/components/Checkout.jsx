@@ -24,7 +24,8 @@ export default function Checkout() {
         const order = {
             buyer: {name, email, phone},
             items: cart,
-            total: getCartTotal()
+            total: getCartTotal(),
+            fecha: new Date()
         }
         console.log(order)
         addDoc(orderCollection, order).then(({id}) => {
