@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import MyProvider from './context/CartContext';
 import Cart from './components/Cart';
 import { initializeApp } from "firebase/app";
+import Checkout from './components/Checkout';
 
 initializeApp({
   apiKey: "AIzaSyARqyjefhTlACUQM2KARBft_goUk0QBs9Q",
@@ -35,6 +36,7 @@ function App() {
             <Route path="/contact" element={<Contact/>} />
             <Route path="/producto/:id" element={<ItemDetailContainer/>} />
             <Route path="/cart" element={<Cart/>} />
+            <Route path="/checkout" element={<Checkout/>} />
           </Routes>
         <Footer />
       </MyProvider>

@@ -9,7 +9,7 @@ export default function ItemCount({ onAdd, sumar, restar, reset, stock, count })
         <div className="cajita">
             <div className="botones">
                 <button className="botonPrincipal" onClick={restar}>-</button>
-                <p class="item-count">{ count }</p>
+                <p className="item-count">{ count }</p>
                 <button className="botonPrincipal" onClick={sumar}>+</button>
             </div>
             <div className="agregar">

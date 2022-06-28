@@ -17,8 +17,8 @@ const MyProvider = ({children}) => {
             ...detail,
             count,
         };
-        if (isInCart(newItem.id)) {
-            const findProduct = cart.find(item => item.id === newItem.id);
+        if (isInCart(newItem)) {
+            const findProduct = cart.find(item => item.id === newItem.id);            
             const productIndex = cart.indexOf(findProduct);
             const auxArray = [...cart];
             auxArray[productIndex].count += count;
@@ -40,7 +40,7 @@ const MyProvider = ({children}) => {
         const newCart = cart.filter(item => item.id !== id);
         setCart(newCart);
     }
-
+    
     //GetItemQuantity retorna la cantidad total de unidades que tiene nuestro state cart
     const getItemQuantity = () => {
         return cart.reduce((acc, x) => acc += x.count , 0)

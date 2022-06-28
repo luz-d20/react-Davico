@@ -30,10 +30,10 @@ export default function Cart() {
             </td>
           </tr>
         ) || 
-        cart.map(item => (
+        cart.map(item => (              
           <tr className="cart-item" key={item.id}>
             <td className="cart-item-img">
-              <img src={item.thumbnail} alt={item.name} />
+              <img src={item.picture} alt={item.name} />
             </td>
             <td className="cart-item-title">
               {item.title}
@@ -61,7 +61,7 @@ export default function Cart() {
           :
           <>
           <h3>Total: ${getCartTotal()}</h3>
-          <Link to="/cart"><button className="botonPrincipal">Continuar al Pago</button></Link>
+          <Link to="/checkout"><button className="botonPrincipal">Continuar al Pago</button></Link>
           <button className="botonPrincipal" onClick={emptyCart}>Vaciar Carrito</button>
           </>
       }

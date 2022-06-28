@@ -1,0 +1,23 @@
+.checkoutBody {
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.checkoutBody input {
+    padding: 0.2em;
+    margin: 10px;
+    border: 2px solid purple;
+    border-radius: 5px;
+}
+.checkoutBody p {
+    font-size: 0.8em;
+    text-align: center;
+    padding-bottom: 15px;
+}
+.checkoutBody h1 {
+    font-size: 3em;
+    text-align: center;
+    padding-bottom: 15px;
+}

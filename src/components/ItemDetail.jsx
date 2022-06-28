@@ -6,18 +6,14 @@ import { CartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
 export default function ItemDetail ( { detail } ) {
-  let { category_id, title, price, id } = detail;
-  let thumbnail = detail.pictures[0].url;
-
-  const { isInCart, addToCart } = useContext(CartContext);
-
+  let { category_id, title, price, id, picture, stock } = detail;
   
+  const { isInCart, addToCart } = useContext(CartContext);
   const [cant, setCant] = useState(0);
 
 
   //FUNCIONES DE ITEM COUNT
   const [count, setCount] = useState(1)
-  const stock = 10;
 
   const sumar = () => {
     count < stock ? setCount(count + 1) : swal('No hay suficiente stock')
@@ -45,7 +41,7 @@ export default function ItemDetail ( { detail } ) {
   return (
     <div className="item-detail-contenedor">
             <div className="item-detail-featured-img">
-                <img className="item-detail-img grow" src={thumbnail} alt={title}/>
+                <img className="item-detail-img grow" src={picture} alt={title}/>
             </div>
         <div className="item-detail-info">
             <h2>{title}</h2>
@@ -58,7 +54,7 @@ export default function ItemDetail ( { detail } ) {
                 <Link to={'/cart'}><button className="botonPrincipal">Terminar mi compra</button></Link>
                 </>
                  : 
-                <ItemCount stock={10} initial={1} onAdd={agregar} sumar={sumar} restar={restar} reset={reset} count={count} />
+                <ItemCount stock={stock} initial={1} onAdd={agregar} sumar={sumar} restar={restar} reset={reset} count={count} />
                 }
             </div>
         </div>

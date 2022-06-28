@@ -3,6 +3,7 @@ import './ItemDetailContainer.css';
 import ItemDetail from '../components/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 
 export default function ItemDetailContainer() {
@@ -12,22 +13,20 @@ export default function ItemDetailContainer() {
   const [cargando, setCargando] = useState(true);
   const [producto, setProducto] = useState(null);
 
-//Fetch a cambiar por un find cuando pasemos a Firebase
   useEffect(() => {
-    fetch(`https://api.mercadolibre.com/items/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setProducto(data);
-        setCargando(false);
-      }
-      )
-      .catch(err => {
-        setError(true);
-        setCargando(false);
-      }
-      );
+    const db = getFirestore();
+    const productRef = doc(db, 'productos', id);
+    getDoc(productRef).then((snapshot) => {
+      setProducto(snapshot.data());
+      setCargando(false);
+    })
+    .catch(error => {
+      setError(error);
+      setCargando(false);
+    }
+    );
   }, [id]);
-//Fin del fetch a cambiar
+  
 
 if (cargando) {
   return <div className="loader">  <Spinner animation="border" variant="danger" />

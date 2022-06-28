@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import './Item.css';
 
 export default function Item( { producto } ) {
-    const { id, category_id, title, price, thumbnail } = producto;
+    const { id, category_id, title, price, picture } = producto;
   return (
     <div>
         <Card className="card" style={{ width: '18rem' }}>
-            <Card.Img className="imgProducto" variant="top" src={thumbnail} />
+            <Card.Img className="imgProducto" variant="top" src={picture} />
             <Card.Body>
                 <Card.Title className="lineClamp">{title}</Card.Title>
                 <Card.Text className="categoria">{category_id}</Card.Text>

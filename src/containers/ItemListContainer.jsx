@@ -3,28 +3,55 @@ import { useParams } from 'react-router-dom';
 import ItemList from '../components/ItemList';
 import './ItemListContainer.css';
 import { Spinner } from 'react-bootstrap';
-
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
 
 export default function ItemListContainer() {
+
+
   const { id } = useParams();
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
 
-  const api = 'https://api.mercadolibre.com/sites/MLA/search?q=ropa-de-monta%C3%B1a';
+  useEffect(() => {
+    const db = getFirestore();
+    const productosCollection = collection(db, 'productos');
+    
 
-  const task = new Promise ((resolve, reject) => {
-  setTimeout(() => {
-      fetch(`${api}&limit=20`)
-        .then(res => res.json())
-        .then (res => {
-          (!id) ? setProductos(res.results) : setProductos((res.results).filter(item => item.category_id == id));
-          setCargando(false);
-        })
-        .catch(err => console.log("Hubo un error: " + err));
-    }, 2000);
-  }, [])
+    if (id) {
+      const q = query(productosCollection, where('category_id', '==', id));
+
+      getDocs(q)
+      .then((snapshot) => {
+        setProductos(
+          snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        );
+        setCargando(false);
+      }
+      ).catch(error => {
+        setError(error);
+        setCargando(false);
+      });
+    } else {
+      getDocs(productosCollection)
+      .then((snapshot) => {
+        setProductos(
+          snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        );
+      setCargando(false);
+    }
+    ).catch(error => {
+      setError(error);
+      setCargando(false);
+    });
+  }
+  }, [id]);
+
+ 
+  
+
+
   
 if (cargando) {
   return <div className="loader">  <Spinner animation="border" variant="danger" />
