@@ -40,7 +40,7 @@ If you prefer to run it locally, follow the steps below:
 4. Open http://localhost:3000 to see it in your browser.
 
 ## Build
-This project was developed with React, bringing all products from a (Firebase)[https://firebase.google.com/] database.
+This project was developed with React, bringing all products from a [Firebase](https://firebase.google.com/) database.
 ### Libraries
 * [React-router-dom](https://v5.reactrouter.com/web/guides/quick-start): Adds dynamic routing to a web app. In this project: used for all routing. **Add it to your project with *npm add react-router-dom*.**
 * [React-bootstrap](https://react-bootstrap.github.io/): Component-based library that provides native Bootstrap components as pure React components. In this project: used for the navbar and product cards. **Add it to your project with *npm add react-bootstrap*.**
