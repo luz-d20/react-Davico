@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import swal from "sweetalert";
 
 export const CartContext = createContext()
 const {Provider} = CartContext;
@@ -22,23 +23,44 @@ const MyProvider = ({children}) => {
             const findProduct = cart.find(item => item.id === newItem.id);            
             const productIndex = cart.indexOf(findProduct);
             const auxArray = [...cart];
-            auxArray[productIndex].count += count;
-            setCart(auxArray);
+            const total = auxArray[productIndex].count += count;
+            if (total > newItem.stock) {
+                swal("Error", `No hay suficientes unidades en stock`, "error");
+            }
+            else {
+                setCart(auxArray);
+                window.localStorage.setItem(id, JSON.stringify(auxArray[productIndex]));
+            }
         }
         else {
             setCart([...cart, newItem]);
+            window.localStorage.setItem(id, JSON.stringify(newItem));
         }
+    }
+
+    //Poblar Checkout con LocalStorage
+    const populateCart = () => {
+        let arrayOfValues = Object.values(localStorage);
+        if (arrayOfValues.length > 0) {
+            let arrayOfProducts = [];
+            for (let i = 0; i < arrayOfValues.length; i++) {
+                arrayOfProducts.push(JSON.parse(arrayOfValues[i]));
+            }
+            setCart(arrayOfProducts);
+        }    
     }
 
     //EmptyCart vacia el carrito
     const emptyCart = () => {
         setCart([]);
+        localStorage.clear();
     }
 
     //RemoveFromCart elimina un producto cuyo ID coincida con el que se le pasa por parámetro.
     const removeFromCart = (id) => {
         const newCart = cart.filter(item => item.id !== id);
         setCart(newCart);
+        window.localStorage.removeItem(id);
     }
     
     //GetItemQuantity retorna la cantidad total de unidades que tiene nuestro state cart
@@ -59,7 +81,8 @@ const MyProvider = ({children}) => {
         emptyCart,
         removeFromCart,
         getItemQuantity,
-        getCartTotal
+        getCartTotal,
+        populateCart
     }}>{children}</Provider>
 }
 export default MyProvider;

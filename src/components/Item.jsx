@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 import './Item.css';
 
 export default function Item( { producto } ) {
-    const { id, category_id, title, price, picture } = producto;
+    const { id, category_id, title, price, picture, stock } = producto;
   return (
     <div>
-        <Card className="card" style={{ width: '18rem' }}>
+        <Link to={"/producto/" + id} className="linkCard"><Card className="card" style={{ width: '18rem' }}>
             <Card.Img className="imgProducto" variant="top" src={picture} />
             <Card.Body>
                 <Card.Title className="lineClamp">{title}</Card.Title>
-                <Card.Text className="categoria">{category_id}</Card.Text>
+                <Card.Text className="smallTxt">Categoría: {category_id} - Stock: {stock}</Card.Text>
                 <Card.Text>
                     Precio: $ {price}
                 </Card.Text>
-                <Link to={"/producto/" + id} className="lse botonPrincipal">Ver detalle</Link>
+                <Button className="lse botonPrincipal">Ver detalle</Button>
             </Card.Body>
-        </Card>
+        </Card></Link>
     </div>
   )
 }

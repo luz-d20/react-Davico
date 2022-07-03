@@ -5,6 +5,13 @@
     align-items: center;
     justify-content: center;
 }
+.formBody{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .checkoutBody input {
     padding: 0.2em;
     margin: 10px;

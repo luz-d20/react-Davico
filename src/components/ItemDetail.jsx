@@ -45,7 +45,7 @@ export default function ItemDetail ( { detail, id } ) {
             </div>
         <div className="item-detail-info">
             <h2>{title}</h2>
-            <h6>{category_id}</h6>
+            <h6>Categoría: {category_id} - Stock: {stock}</h6>
             <h4>$ {price}</h4>
             <div>
               {cant > 0 ? 

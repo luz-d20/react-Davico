@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from '../components/ItemList';
 import './ItemListContainer.css';
 import { Spinner } from 'react-bootstrap';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { CartContext } from '../context/CartContext';
 
 
 export default function ItemListContainer() {
@@ -13,7 +14,13 @@ export default function ItemListContainer() {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
-
+  const { populateCart } = useContext(CartContext);
+  
+  useEffect(() => {
+    populateCart();
+  }
+  , [])
+  
   useEffect(() => {
     const db = getFirestore();
     const productosCollection = collection(db, 'productos');
