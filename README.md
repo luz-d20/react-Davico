@@ -12,7 +12,7 @@ Si preferís correrlo de manera local, seguí los siguientes pasos:
 4. Abrí http://localhost:3000 para verlo en tu navegador.
 
 ## Build
-Este proyecto fue realizado con React, trayendo los productos de una base de datos ubicada en (Firebase)[https://firebase.google.com/].
+Este proyecto fue realizado con React, trayendo los productos de una base de datos ubicada en [Firebase](https://firebase.google.com/).
 ### Librerías utilizadas
 * [React-router-dom](https://v5.reactrouter.com/web/guides/quick-start): Paquete para implementar routing dinámico en una web app. En este proyecto, utilizado para el routing. **Añadilo a tu proyecto con *npm add react-router-dom*.**
 * [React-bootstrap](https://react-bootstrap.github.io/): Librería que provee componentes de Bootstrap como componentes puros de React. En este proyecto, utilizada (entre otro lugares) en la Navbar y las card de producto. **Añadilo a tu proyecto con *npm add react-bootstrap*.**
